@@ -1,39 +1,25 @@
-import { Produto as ProdutoType } from '../App'
 import Produto from '../components/Produto'
+import { useGetProdutosQuery } from '../services/api'
 
 import * as S from './styles'
 
-type Props = {
-  produtos: ProdutoType[]
-  favoritos: ProdutoType[]
-  adicionarAoCarrinho: (produto: ProdutoType) => void
-  favoritar: (produto: ProdutoType) => void
-}
+// Componente funcional que exibe a lista de produtos
+const ProdutosComponent = () => {
+  // Usa o hook do RTK Query para buscar os produtos
+  // "produtos" é o resultado da API
+  // "isLoading" indica se os dados ainda estão sendo carregados
+  const { data: produtos, isLoading } = useGetProdutosQuery()
 
-const ProdutosComponent = ({
-  produtos,
-  favoritos,
-  adicionarAoCarrinho,
-  favoritar
-}: Props) => {
-  const produtoEstaNosFavoritos = (produto: ProdutoType) => {
-    const produtoId = produto.id
-    const IdsDosFavoritos = favoritos.map((f) => f.id)
-
-    return IdsDosFavoritos.includes(produtoId)
-  }
+  // Se os dados ainda estão sendo carregados, mostra uma mensagem
+  if (isLoading) return <h2>Carregando...</h2>
 
   return (
     <>
       <S.Produtos>
-        {produtos.map((produto) => (
-          <Produto
-            estaNosFavoritos={produtoEstaNosFavoritos(produto)}
-            key={produto.id}
-            produto={produto}
-            favoritar={favoritar}
-            aoComprar={adicionarAoCarrinho}
-          />
+        {/* Percorre a lista de produtos e renderiza um componente Produto para cada um */}
+        {produtos?.map((produto) => (
+          // Passa o objeto "produto" como prop para o componente Produto
+          <Produto key={produto.id} produto={produto} />
         ))}
       </S.Produtos>
     </>

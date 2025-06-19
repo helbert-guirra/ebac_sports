@@ -1,17 +1,20 @@
+import { useSelector } from 'react-redux'
+
 import * as S from './styles'
 
-import { Produto } from '../../App'
-
 import cesta from '../../assets/cesta.png'
-import { paraReal } from '../Produto'
+import { paraReal } from '../Produto' // Importa a função que formata o valor em Real (R$)
 
-type Props = {
-  itensNoCarrinho: Produto[]
-  favoritos: Produto[]
-}
+import { RootReducer } from '../../store' // Importa o tipo do estado global tipado (usado com useSelector)
 
-const Header = ({ itensNoCarrinho, favoritos }: Props) => {
-  const valorTotal = itensNoCarrinho.reduce((acc, item) => {
+// Componente de cabeçalho
+const Header = () => {
+  // Acessa os itens do carrinho do estado global
+  const itens = useSelector((state: RootReducer) => state.carrinho.itens)
+  // Acessa os itens favoritos do estado global
+  const favoritos = useSelector((state: RootReducer) => state.favoritos.itens)
+  // Calcula o valor total dos produtos no carrinho
+  const valorTotal = itens.reduce((acc, item) => {
     acc += item.preco
     return acc
   }, 0)
@@ -23,7 +26,7 @@ const Header = ({ itensNoCarrinho, favoritos }: Props) => {
         <span>{favoritos.length} favoritos</span>
         <img src={cesta} />
         <span>
-          {itensNoCarrinho.length} itens, valor total: {paraReal(valorTotal)}
+          {itens.length} itens, valor total: {paraReal(valorTotal)}
         </span>
       </div>
     </S.Header>

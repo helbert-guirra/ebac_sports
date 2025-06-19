@@ -1,0 +1,30 @@
+0 verbose cli C:\Program Files\node.exe C:\Program Files\node_modules\npm\bin\npm-cli.js
+1 info using npm@10.9.2
+2 info using node@v22.16.0
+3 silly config load:file:C:\Program Files\node_modules\npm\npmrc
+4 silly config load:file:C:\Users\Usuário\.npmrc
+5 silly config load:file:C:\Users\Usuário\AppData\Roaming\npm\etc\npmrc
+6 verbose title npm install npm@11.4.2
+7 verbose argv "install" "--global" "npm@11.4.2"
+8 verbose logfile logs-max:10 dir:C:\Users\Usuário\Documents\EBAC\python\Introdução ao Redux com React\tarefa_modulo\ebac_sports\UsersDESKTOP-U9J66QUAppDataLocalnpm-cache\_logs\2025-06-17T21_55_13_222Z-
+9 verbose logfile C:\Users\Usuário\Documents\EBAC\python\Introdução ao Redux com React\tarefa_modulo\ebac_sports\UsersDESKTOP-U9J66QUAppDataLocalnpm-cache\_logs\2025-06-17T21_55_13_222Z-debug-0.log
+10 silly logfile done cleaning log files
+11 http fetch GET 200 https://registry.npmjs.org/npm 649ms (cache miss)
+12 silly packumentCache heap:4345298944 maxSize:1086324736 maxEntrySize:543162368
+13 silly idealTree buildDeps
+14 silly fetch manifest npm@11.4.2
+15 silly packumentCache full:https://registry.npmjs.org/npm cache-miss
+16 http fetch GET 200 https://registry.npmjs.org/npm 6330ms (cache miss)
+17 silly packumentCache full:https://registry.npmjs.org/npm set size:undefined disposed:false
+18 silly placeDep ROOT npm@11.4.2 OK for:  want: 11.4.2
+19 silly reify moves {}
+20 http cache npm@https://registry.npmjs.org/npm/-/npm-11.4.2.tgz 0ms (cache hit)
+21 silly tarball no local data for npm@https://registry.npmjs.org/npm/-/npm-11.4.2.tgz. Extracting by manifest.
+22 http fetch GET 200 https://registry.npmjs.org/npm/-/npm-11.4.2.tgz 3468ms (cache miss)
+23 silly ADD node_modules/npm
+24 verbose cwd C:\Users\Usuário\Documents\EBAC\python\Introdução ao Redux com React\tarefa_modulo\ebac_sports
+25 verbose os Windows_NT 10.0.19045
+26 verbose node v22.16.0
+27 verbose npm  v10.9.2
+28 verbose exit 0
+29 info ok

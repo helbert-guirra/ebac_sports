@@ -1,24 +1,23 @@
-import { Produto as ProdutoType } from '../../App'
 import * as S from './styles'
+import { Produto } from '../../App'
 
-type Props = {
-  produto: ProdutoType
-  aoComprar: (produto: ProdutoType) => void
-  favoritar: (produto: ProdutoType) => void
-  estaNosFavoritos: boolean
-}
+import { adicionar as adicionarCarrinho } from '../../store/reducers/carrinho'
+import { adicionar as adicionarFavoritos } from '../../store/reducers/favoritos'
+import { useDispatch } from 'react-redux'
 
+// Função auxiliar para formatar números como moeda brasileira (R$)
 export const paraReal = (valor: number) =>
   new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(
     valor
   )
+// Define o tipo das props que o componente recebe
+type Props = {
+  produto: Produto // O componente recebe um objeto do tipo Produto
+}
+// Componente funcional que exibe as informações de um produto
+const ProdutoComponent = ({ produto }: Props) => {
+  const dispatch = useDispatch() // Obtém a função dispatch para disparar ações Redux
 
-const ProdutoComponent = ({
-  produto,
-  aoComprar,
-  favoritar,
-  estaNosFavoritos
-}: Props) => {
   return (
     <S.Produto>
       <S.Capa>
@@ -28,16 +27,22 @@ const ProdutoComponent = ({
       <S.Prices>
         <strong>{paraReal(produto.preco)}</strong>
       </S.Prices>
-      <S.BtnComprar onClick={() => favoritar(produto)} type="button">
-        {estaNosFavoritos
-          ? '- Remover dos favoritos'
-          : '+ Adicionar aos favoritos'}
+      <S.BtnComprar
+        onClick={() => {
+          dispatch(adicionarFavoritos(produto)) // Dispara a ação para o reducer de favoritos
+        }}
+        type="button"
+      >
+        Adicionar aos Favoritos
       </S.BtnComprar>
-      <S.BtnComprar onClick={() => aoComprar(produto)} type="button">
+      <S.BtnComprar
+        onClick={() => dispatch(adicionarCarrinho(produto))} // Dispara a ação para o reducer de carrinho
+        type="button"
+      >
         Adicionar ao carrinho
       </S.BtnComprar>
     </S.Produto>
   )
 }
-
+// Exporta o componente para ser usado em outras partes do app
 export default ProdutoComponent
